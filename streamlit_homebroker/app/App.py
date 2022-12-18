@@ -9,7 +9,6 @@ import assets.order_graph as aog
 
 
 st.set_page_config(layout="wide")
-st.title('Home Broker project')
 
 col1, col2, col3, col4, col5, col6, col7 = st.columns(7)
 col1.title('BTC/USDT')
@@ -24,7 +23,11 @@ col1, col2, col3 = st.columns([1, 3, 1])
 with col1:
     order_json = gmd.get_orders('BTCUSDT', 15)
     fig = aog.order_book(order_json)
-    st.plotly_chart(fig, use_container_width=True)
+    config=dict(
+                    displayModeBar=False,
+                    
+                )
+    st.plotly_chart(fig, use_container_width=True, config=config, theme=None)
 
 
 with col2:
