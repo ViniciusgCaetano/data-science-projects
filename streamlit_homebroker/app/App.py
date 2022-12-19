@@ -2,10 +2,10 @@ import streamlit as st
 import plotly.graph_objects as go
 from plotly.colors import n_colors
 from plotly.subplots import make_subplots
-import numpy as np
-import pandas as pd
-import api_connections.get_market_data as gmd
+import numpy as np6
+import api_connections.get_order_data as gmd
 import assets.order_graph as aog
+import assets.candle_graph as acg
 
 
 st.set_page_config(layout="wide")
@@ -24,38 +24,13 @@ with col1:
     order_json = gmd.get_orders('BTCUSDT', 15)
     fig = aog.order_book(order_json)
     config=dict(
-                    displayModeBar=False,
-                    
+                    displayModeBar=False, 
                 )
     st.plotly_chart(fig, use_container_width=True, config=config, theme=None)
 
 
 with col2:
-
-    df = pd.read_csv('https://raw.githubusercontent.com/plotly/datasets/master/finance-charts-apple.csv')
-
-    fig = make_subplots(rows=2, cols=1, shared_xaxes=True, 
-               vertical_spacing=0.05, subplot_titles=('OHLC', 'Volume'), 
-               row_width=[0.2, 0.7])
-
-    # Plot OHLC on 1st row
-    fig.add_trace(go.Candlestick(x=df["Date"], open=df["AAPL.Open"], high=df["AAPL.High"],
-                    low=df["AAPL.Low"], close=df["AAPL.Close"], name="OHLC", showlegend=False), 
-                    row=1, col=1
-    )
-
-    # Bar trace for volumes on 2nd row without legend
-    fig.add_trace(go.Bar(x=df['Date'], y=df['AAPL.Volume'], showlegend=False), row=2, col=1)
-
-    # Do not show OHLC's rangeslider plot 
-    fig.update(layout_xaxis_rangeslider_visible=False
-                )
-
-
-    
-    fig['layout'].update(margin=dict(l=0,r=0,b=0,t=0))
-    fig['layout'].update(dragmode=False)
-
+    fig = acg.candle_graph()
     config=dict(
                     displayModeBar=False,
                     
