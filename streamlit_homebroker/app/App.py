@@ -5,8 +5,11 @@ from plotly.subplots import make_subplots
 import numpy as np
 import api_connections.get_candle_data as gcd
 import api_connections.get_order_data as gmd
+import api_connections.get_last_trades as glt
 import assets.order_graph as aog
 import assets.candle_graph as acg
+import assets.last_trades as alt
+
 
 
 st.set_page_config(layout="wide")
@@ -31,7 +34,7 @@ with col1:
 
 
 with col2:
-    df = gcd.get_candles('BTCUSDT', '1M')
+    df = gcd.get_candles('BTCUSDT', '1d')
     fig = acg.candle_graph(df)
     config=dict(
                     displayModeBar=False,
@@ -42,26 +45,6 @@ with col2:
     
 
 with col3:
-    np.random.seed(1)
-
-    colors = n_colors('rgb(255, 200, 200)', 'rgb(200, 0, 0)', 9, colortype='rgb')
-    a = np.random.randint(low=0, high=9, size=10)
-    b = np.random.randint(low=0, high=9, size=10)
-
-    fig = go.Figure(data=[go.Table(
-    header=dict(
-        values=['<b>Column A</b>', '<b>Column B</b>'],
-        line_color='white', fill_color='white',
-        align='center',font=dict(color='black', size=12)
-    ),
-    cells=dict(
-        values=[a, b],
-        line_color=[np.array(colors)[a],np.array(colors)[b]],
-        fill_color=[np.array(colors)[a],np.array(colors)[b]],
-        align='center', font=dict(color='white')
-        ))
-    ])
-    fig['layout'].update(margin=dict(l=0,r=0,b=0,t=0))
-
-    st.plotly_chart(fig, use_container_width=True)
-
+    df = glt.get_last_trades('BTCUSDT')
+    fig = alt.last_trades(df)
+    st.plotly_chart(fig, use_container_width=True, config=config)
