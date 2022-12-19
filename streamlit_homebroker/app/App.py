@@ -2,7 +2,8 @@ import streamlit as st
 import plotly.graph_objects as go
 from plotly.colors import n_colors
 from plotly.subplots import make_subplots
-import numpy as np6
+import numpy as np
+import api_connections.get_candle_data as gcd
 import api_connections.get_order_data as gmd
 import assets.order_graph as aog
 import assets.candle_graph as acg
@@ -30,7 +31,8 @@ with col1:
 
 
 with col2:
-    fig = acg.candle_graph()
+    df = gcd.get_candles('BTCUSDT', '1M')
+    fig = acg.candle_graph(df)
     config=dict(
                     displayModeBar=False,
                     
