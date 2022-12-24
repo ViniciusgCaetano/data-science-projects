@@ -1,8 +1,5 @@
 import streamlit as st
 import streamlit_nested_layout
-import plotly.graph_objects as go
-from plotly.colors import n_colors
-from plotly.subplots import make_subplots
 import numpy as np
 import api_connections.get_candle_data as gcd
 import api_connections.get_order_data as gmd
@@ -43,6 +40,7 @@ with st.empty():
                 st.title('BTC/USDT')
            
             order_json = gmd.get_orders('BTCUSDT', 15)
+            st.write(order_json)
             fig = aog.order_book(order_json)
             config=dict(
                             displayModeBar=False, 

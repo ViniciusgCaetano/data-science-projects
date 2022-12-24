@@ -4,7 +4,7 @@ import numpy as np
 import pandas as pd
 
 def order_book(orders_json):
-
+    
     price_bids = [float(x[0]) for x in orders_json["bids"]]
     amount_bids = [float(x[1]) for x in orders_json["bids"]]
     total_bids = [round((x * y), 2) for x, y in zip(price_bids, amount_bids)]
