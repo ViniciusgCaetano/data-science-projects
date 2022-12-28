@@ -8,4 +8,3 @@ def get_orders(pair, depth):
     orders_json = json.loads(byte_json)
     return orders_json
 
-st.write(get_orders('BTCBUSD', 5))
