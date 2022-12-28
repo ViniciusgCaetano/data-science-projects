@@ -40,7 +40,6 @@ with st.empty():
                 st.title('BTC/USDT')
            
             order_json = gmd.get_orders('BTCUSDT', 15)
-            st.write(order_json)
             fig = aog.order_book(order_json)
             config=dict(
                             displayModeBar=False, 
