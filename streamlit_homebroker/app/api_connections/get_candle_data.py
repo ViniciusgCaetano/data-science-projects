@@ -5,7 +5,7 @@ import streamlit as st
 import datetime
 
 def get_candles(pair, interval):
-    response = requests.get(f'https://api.binance.com/api/v3/klines?symbol={pair}&interval={interval}&limit=120')
+    response = requests.get(f'https://data.binance.com/api/v3/klines?symbol={pair}&interval={interval}&limit=120')
     byte_json = response.content
     orders_json = json.loads(byte_json)  
     df = pd.DataFrame(orders_json, columns=['open_time', 'open_price', 'high_price', 'low_price', 'close_price',
