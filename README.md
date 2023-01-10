@@ -10,3 +10,37 @@ git sparse-checkout add {NAME_OF_PROJECT_FOLDER}
 
 
 
+## Summary of Projects
+
+
+
+### Brazilian Football Championship DataViz
+
+Some visualizations of data extracted of the "Brasileirão", the national football championship of Brazil, like graphs and a animated video of evolution of classification during the championship. 
+
+
+
+### Credit Risk Analysis
+
+Using a Linear Regression to predict default situation in Loan Requests.
+
+
+
+### Database Modelling
+
+Modelling a Database based on a use case of a Cientific Ressearch Agency.
+
+
+
+### Titanic Analysis
+
+Analysing the dataset of Titanic Incident.
+
+
+
+### Walmart Sales Forecasting
+
+Using EDA and Random Forest Model to predict the sales of 2013 first half.
+
+
+
