@@ -48,23 +48,18 @@ def order_book(orders_json):
                     size=14)
             )
         )
-
-
-
     
     fig = make_subplots(
         rows=2, cols=1,
         specs=[[{"type": "table"}],
             [{"type": "table"}]],
-            vertical_spacing=0,
-
-            
+            vertical_spacing=60,
+            margin=0.1
         )
 
     fig.add_trace(trace2, row=1, col=1)
     fig.add_trace(trace1, row=2, col=1)
-    fig['layout'].update(margin=dict(l=0,r=0,b=0,t=0))
-    fig['layout'].update(height=850)
-
+    fig['layout'].update(margin=dict(l=0,r=0,b=0.1,t=0))
+    
 
     return fig
