@@ -1,7 +1,6 @@
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
-import numpy as np
-import pandas as pd
+
 
 def order_book(orders_json):
     
@@ -53,13 +52,14 @@ def order_book(orders_json):
         rows=2, cols=1,
         specs=[[{"type": "table"}],
             [{"type": "table"}]],
-            vertical_spacing=60,
-            margin=0.1
+            row_heights=[1,1],
+            vertical_spacing=0
         )
 
     fig.add_trace(trace2, row=1, col=1)
     fig.add_trace(trace1, row=2, col=1)
-    fig['layout'].update(margin=dict(l=0,r=0,b=0.1,t=0))
-    
+    fig['layout'].update(margin=dict(l=0,r=0,b=0.0,t=0))
+    fig['layout'].update(height=800)
+
 
     return fig

@@ -22,7 +22,7 @@ with st.empty():
             with col1_1:
                 st.title('BTC/USDT')
            
-            order_json = gmd.get_orders('BTCUSDT', 12)
+            order_json = gmd.get_orders('BTCUSDT', 14)
             fig = aog.order_book(order_json)
             config=dict(
                             displayModeBar=False
@@ -31,6 +31,7 @@ with st.empty():
 
 
         with col2:
+            
             col2_1, col2_2, col2_3, col2_4 = st.columns(4)
             with col2_1:
                 st.metric('Price', "{:.2f}".format(float(metrics['lastPrice'])))

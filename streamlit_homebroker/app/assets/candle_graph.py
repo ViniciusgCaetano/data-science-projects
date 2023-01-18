@@ -6,8 +6,7 @@ from plotly._subplots import make_subplots
 def candle_graph(df):
 
     fig = make_subplots(rows=2, cols=1, shared_xaxes=True, 
-               vertical_spacing=0.05, subplot_titles=('OHLC', 'Volume'), 
-
+               vertical_spacing=0.05, subplot_titles=('Price Variation', 'Traded Volume'), 
                row_width=[0.1, 0.3])
 
     # Plot OHLC on 1st row
@@ -24,8 +23,8 @@ def candle_graph(df):
     fig.update(layout_xaxis_rangeslider_visible=False
                 )
     
-    fig['layout'].update(margin=dict(l=0,r=0,b=0,t=0))
+    fig['layout'].update(margin=dict(l=0,r=0,b=0,t=20))
     fig['layout'].update(dragmode=False)
     fig['layout'].update(yaxis=dict(side='right'))
-    fig['layout'].update(height=600)
+    fig['layout'].update(height=700)
     return fig
