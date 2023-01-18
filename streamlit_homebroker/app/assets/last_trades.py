@@ -1,6 +1,5 @@
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
-import pandas as pd
 
 def last_trades(trades_df):
 
@@ -21,6 +20,7 @@ def last_trades(trades_df):
                 fill_color='gray',
                 height=25,
                 align=['left', 'right', 'right'],
+                # Conditional color of trade
                 font=dict(color=[['green' if x == True else 'red' for x in trades_df['isBuyerMaker']], 'white', 'lightgray'],
                         size=14)
                 )
@@ -30,7 +30,6 @@ def last_trades(trades_df):
         rows=1, cols=1,
         specs=[[{"type": "table"}]],
         vertical_spacing=0
-  
         )
     
     fig.add_trace(table, row=1, col=1)
