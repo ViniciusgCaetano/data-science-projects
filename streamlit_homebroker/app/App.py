@@ -1,29 +1,22 @@
 import streamlit as st
 import streamlit_nested_layout
-import numpy as np
-import api_connections.get_candle_data as gcd
-import api_connections.get_order_data as gmd
-import api_connections.get_last_trades as glt
-import api_connections.get_metrics_of_pair as gmp
-import assets.order_graph as aog
-import assets.candle_graph as acg
-import assets.last_trades as alt
-
+from api_connections import get_candle_data, get_order_data, get_last_trades, get_metrics_of_pair
+from assets import order_graph, candle_graph, last_trades
 
 
 st.set_page_config(layout="wide")
 
 with st.empty():
     while True:
-        metrics = gmp.get_market_metrics('BTCUSDT')
+        metrics = get_metrics_of_pair.get_market_metrics('BTCUSDT')
         col1, col2, col3 = st.columns([1, 3, 1])
         with col1:
             col1_1, col1_2 = st.columns(2)
             with col1_1:
                 st.title('BTC/USDT')
            
-            order_json = gmd.get_orders('BTCUSDT', 14)
-            fig = aog.order_book(order_json)
+            order_json = get_order_data.get_orders('BTCUSDT', 14)
+            fig = order_graph.order_book(order_json)
             config=dict(
                             displayModeBar=False
                         )
@@ -42,8 +35,8 @@ with st.empty():
             with col2_4:
                 st.metric('24h Low', "{:.2f}".format(float(metrics['lowPrice'])))
 
-            df = gcd.get_candles('BTCUSDT', '1d')
-            fig = acg.candle_graph(df)
+            df = get_candle_data.get_candles('BTCUSDT', '1d')
+            fig = candle_graph.candle_graph(df)
             config=dict(displayModeBar=False)
             
             st.plotly_chart(fig, use_container_width=True, config=config)
@@ -56,8 +49,8 @@ with st.empty():
             with col3_2:
                 col3_2.metric('24h Volume(USDT)', "{:.2f}".format(float(metrics['quoteVolume']))) 
 
-            df = glt.get_last_trades('BTCUSDT')
-            fig = alt.last_trades(df)
+            df = get_last_trades.get_last_trades('BTCUSDT')
+            fig = last_trades.last_trades(df)
             st.plotly_chart(fig, use_container_width=True, config=config)
 
           
